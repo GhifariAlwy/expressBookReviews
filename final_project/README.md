@@ -38,9 +38,7 @@ npm start          # atau: node index.js
 
 ## Task 10 — general.js (klien Axios)
 
-File `general.js` memanggil 4 endpoint publik via HTTP menggunakan **Axios**:
-- `getAllBooks` & `getBooksByISBN` → `async/await` + `try/catch`
-- `getBooksByAuthor` & `getBooksByTitle` → `Promise` + `.then()/.catch()`
+File `general.js` memanggil 4 endpoint publik via HTTP menggunakan **Axios** dengan gaya **async/await** yang seragam (`try/catch`), termasuk penanganan error 404/not-found dengan format pesan yang konsisten.
 
 Jalankan saat server hidup:
 
