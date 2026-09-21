@@ -1,0 +1,11 @@
+$ curl -s -w '\nHTTP %{http_code}\n' -X DELETE -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJuYW1lIjoiam9obiJ9LCJpYXQiOjE3OTAwMjI5MDMsImV4cCI6MTc5MDAyNjUwM30.BJAnTdtmmeTdJX11uB9W7k6SDqGvyrKwg3AJpQ5uU1Y' http://localhost:5001/customer/auth/review/1
+
+{"message":"Review for the book with ISBN 1 deleted by user john."}
+HTTP 200
+
+# (verifikasi: GET review setelah john menghapus review-nya - hanya review jane yang tersisa):
+$ curl -s -w '\nHTTP %{http_code}\n' http://localhost:5001/review/1
+
+{"jane":"Could not put it down"}
+HTTP 200
+

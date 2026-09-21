@@ -1,0 +1,29 @@
+$ curl -s -w '\nHTTP %{http_code}\n' -X PUT http://localhost:5001/customer/auth/review/1?review=Great%20book%2C%20highly%20recommended!
+
+{"message":"Unauthorized: no access token provided"}
+HTTP 401
+
+# (tanpa token - harus ditolak dengan 401):
+$ curl -s -w '\nHTTP %{http_code}\n' -X PUT http://localhost:5001/customer/auth/review/1?review=Great%20book%2C%20highly%20recommended!
+
+{"message":"Unauthorized: no access token provided"}
+HTTP 401
+
+# (dengan JWT - review ditambahkan):
+$ curl -s -w '\nHTTP %{http_code}\n' -X PUT -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJuYW1lIjoiam9obiJ9LCJpYXQiOjE3OTAwMjI5MDMsImV4cCI6MTc5MDAyNjUwM30.BJAnTdtmmeTdJX11uB9W7k6SDqGvyrKwg3AJpQ5uU1Y' http://localhost:5001/customer/auth/review/1?review=Great%20book%2C%20highly%20recommended!
+
+{"message":"The review for the book with ISBN 1 has been added/updated by user john."}
+HTTP 200
+
+# (dengan JWT - review yang sama diubah isinya):
+$ curl -s -w '\nHTTP %{http_code}\n' -X PUT -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJuYW1lIjoiam9obiJ9LCJpYXQiOjE3OTAwMjI5MDMsImV4cCI6MTc5MDAyNjUwM30.BJAnTdtmmeTdJX11uB9W7k6SDqGvyrKwg3AJpQ5uU1Y' http://localhost:5001/customer/auth/review/1?review=Updated%3A%20still%20a%20great%20book
+
+{"message":"The review for the book with ISBN 1 has been added/updated by user john."}
+HTTP 200
+
+# (user kedua 'jane' menambah review miliknya sendiri):
+$ curl -s -w '\nHTTP %{http_code}\n' -X PUT -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJuYW1lIjoiamFuZSJ9LCJpYXQiOjE3OTAwMjI5MDMsImV4cCI6MTc5MDAyNjUwM30.UaXaYtCxVz9QKGbsUQL8IMuMMgyjdtkYluoOkhyRl-Y' http://localhost:5001/customer/auth/review/1?review=Could%20not%20put%20it%20down
+
+{"message":"The review for the book with ISBN 1 has been added/updated by user jane."}
+HTTP 200
+

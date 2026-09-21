@@ -1,0 +1,11 @@
+$ curl -s -w '\nHTTP %{http_code}\n' -X POST http://localhost:5001/customer/login -H 'Content-Type: application/json' -d '{"username":"john","password":"salahpassword"}'
+
+{"message":"Invalid credentials. Please check your username and password."}
+HTTP 401
+
+# (login dengan kredensial benar - JWT dihasilkan):
+$ curl -s -w '\nHTTP %{http_code}\n' -X POST http://localhost:5001/customer/login -H 'Content-Type: application/json' -d '{"username":"john","password":"password123"}'
+
+{"message":"User successfully logged in","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJuYW1lIjoiam9obiJ9LCJpYXQiOjE3OTAwMjI5MDMsImV4cCI6MTc5MDAyNjUwM30.BJAnTdtmmeTdJX11uB9W7k6SDqGvyrKwg3AJpQ5uU1Y"}
+HTTP 200
+

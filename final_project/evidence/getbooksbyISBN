@@ -1,0 +1,5 @@
+$ curl -s -w '\nHTTP %{http_code}\n' http://localhost:5001/isbn/1
+
+{"author":"Chinua Achebe","title":"Things Fall Apart","reviews":{}}
+HTTP 200
+

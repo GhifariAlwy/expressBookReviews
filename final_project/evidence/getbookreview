@@ -1,0 +1,11 @@
+$ curl -s -w '\nHTTP %{http_code}\n' http://localhost:5001/review/1
+
+{}
+HTTP 200
+
+# (bukti tambahan: GET review buku pertama setelah review john & jane ditambahkan):
+$ curl -s -w '\nHTTP %{http_code}\n' http://localhost:5001/review/1
+
+{"john":"Updated: still a great book","jane":"Could not put it down"}
+HTTP 200
+

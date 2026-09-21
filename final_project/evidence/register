@@ -1,0 +1,11 @@
+$ curl -s -w '\nHTTP %{http_code}\n' -X POST http://localhost:5001/customer/register -H 'Content-Type: application/json' -d '{"username":"john","password":"password123"}'
+
+{"message":"User registered successfully. You can now log in."}
+HTTP 201
+
+# (tes duplikat - harus ditolak dengan 400):
+$ curl -s -w '\nHTTP %{http_code}\n' -X POST http://localhost:5001/customer/register -H 'Content-Type: application/json' -d '{"username":"john","password":"password123"}'
+
+{"message":"Username already exists. Please log in instead."}
+HTTP 400
+
