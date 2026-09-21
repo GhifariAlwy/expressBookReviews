@@ -42,7 +42,9 @@ app.use("/customer/auth/*", function auth(req, res, next) {
   }
 });
 
-const PORT = process.env.PORT || 5000;
+// Port 5000 is used by ControlCenter (AirPlay) on macOS, so default to 5001.
+// Override with the PORT environment variable if needed.
+const PORT = process.env.PORT || 5001;
 
 app.use("/customer", customer_routes);
 app.use("/customer", genl_routes); // register also reachable at /customer/register
