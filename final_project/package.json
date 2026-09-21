@@ -1,19 +1,28 @@
 {
   "name": "bookshop",
   "version": "1.0.1",
-  "description": "",
+  "description": "Final project: Book Review REST API with session + JWT authentication",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+    "express",
+    "jwt",
+    "express-session",
+    "book-review"
+  ],
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "axios": "^1.6.0",
     "express": "^4.18.1",
     "express-session": "^1.17.3",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^8.5.1"
+  },
+  "devDependencies": {
     "nodemon": "^2.0.19"
   }
 }
